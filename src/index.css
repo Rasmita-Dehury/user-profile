@@ -1,13 +1,282 @@
+*,h2 {
+  padding:0 !important;
+  margin:0 !important;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size:14px;
+  position: relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+input[type="checkbox"]{
+  font-size: 1.3em;
+}
+
+div #headerBar{
+  height:50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: 2px solid #1790ff;
+  background: #eeeeee;
+}
+
+#headerBar h2{
+  /* text-align: center; */
+  font-size: 1.2em;
+}
+
+#headerBar button{
+  position: absolute;
+  top:7px;
+  right: 20px;
+  padding: 0 20px !important;
+}
+
+div.mainPage{
+  display:flex;
+}
+
+#leftPane{
+  display:flex;
+  flex-direction: column;
+  /* background: pink; */
+  height:100vh;
+  border-right: 1px solid #e0e0e0;
+  width:370px;
+}
+
+#leftPane div.header{
+  background:#eeeeee;
+  height:40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid #1790ff;
+}
+
+#leftPane div.header i{
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 1.5em;
+}
+
+.userList{
+  padding:15px !important;
+  cursor: pointer;
+}
+li.selected{
+  background: #e4eff9;
+}
+
+.userData{
+  display: flex !important;
+  flex-direction: row !important;
+  width:100%;
+}
+
+.iconBox{
+  width: 60px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconBox i{
+  font-size: 1.3em;
+}
+
+.userData p{
+  margin-left: 50px !important;
+  font-size: 1.3em;
+}
+
+#rightPane{
+  display: flex;
+  height: 100vh;
+}
+
+.userInfo{
+  /* background: gray; */
+  height:500px;
+  /* width: 800px; */
+  margin:50px 0 0 50px !important;
+  padding:20px !important;
+}
+
+.userInfo ul{
+  margin:30px 0 0 80px !important;
+
+}
+
+.userInfo ul li{
+  list-style: none;
+  display: flex;
+  width: 800px;
+  margin-bottom:30px !important;
+  font-size: 1.2em;
+  padding:10px !important;
+}
+
+.userInfo ul li span:first-child{
+  width:250px;
+  font-weight: bold;
+  /* background: green; */
+}
+
+.userInfo ul li span:last-child{
+  border-bottom: 1px solid #e0e0e0;
+  width:500px;
+  padding-left: 20px !important;
+  /* background:blue; */
+}
+
+.addUser{
+  position: absolute;
+  width:600px;
+  height:550px;
+  /* background: red; */
+  top:50%;
+  left:50%; 
+  margin-left: -250px !important;
+  margin-top: -300px !important;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border:1px solid #e0e0e0;
+  z-index: 6;
+  border-radius: 5px;
+}
+
+.addUser .header{
+  /* background: blue; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:80px;
+  padding: 20px !important;
+  font-size: 1.2em;
+  border-bottom: 1px solid #e0e0e0;
+  /* flex-grow: 1; */
+}
+
+.addUser .addDetails{
+  /* background: pink; */
+  padding:20px !important;
+  height:390px;
+  /* flex-grow: 5; */
+}
+
+.addDetails div{
+display: flex;
+flex-direction: column;
+margin-bottom: 20px !important;
+}
+
+.addDetails label{
+  margin-bottom: 10px !important;
+  font-size: 1.2em;
+}
+
+.addDetails input[type="text"],textarea{
+  border:none;
+  padding:10px !important;
+  border-radius: 5px;
+  border:1px solid #e0e0e0;
+}
+
+.addUser .btnBox{
+  /* background: green; */
+  /* flex-grow: 1; */
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px !important; 
+  border-top: 1px solid #e0e0e0;
+}
+
+.addUser .btnBox button,input[type="submit"]{
+  height:35px !important;
+  width: 70px;
+  border:none;  
+  margin-left: 10px !important;
+  border-radius: 5px;
+  font-size: 1.2em;
+  background: #1790ff;
+  color:white;
+  cursor: pointer;
+}
+
+.overlay{
+  width:100%;
+  height:100%;
+  position: fixed;
+  z-index:5;
+  background:black;
+  top:0;
+  left:0;
+  opacity: .5;
+}
+
+.err{
+  color:red;
+  font-size: .9em;
+  margin:5px 0 0 5px !important;
+}
+
+.successBox{
+  width: 550px;
+  height:330px;
+  z-index: 10;
+  position: absolute;
+  top:50%;
+  left:50%; 
+  margin-left: -200px !important;
+  margin-top: -150px !important;
+  background:white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px !important;
+}
+
+.successBox i{
+  font-size: 7em;
+  margin-bottom: 30px !important;
+  color:green;
+}
+
+.successBox h2{
+  font-size: 2em;
+  margin-bottom: 10px !important;
+}
+
+.successBox p{
+  font-size: 1.2em;
+  margin-bottom: 15px !important;
+}
+
+.successBox button{
+  align-self: flex-end;
+  height:40px !important;
+  width: 70px;
+  border:none;  
+  margin-left: 10px !important;
+  border-radius: 5px;
+  font-size: 1.2em;
+  background: #1790ff;
+  color:white;
+  cursor: pointer;
 }
