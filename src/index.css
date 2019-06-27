@@ -108,11 +108,15 @@ li.selected{
 }
 
 .userInfo{
-  /* background: gray; */
   height:500px;
   /* width: 800px; */
   margin:50px 0 0 50px !important;
   padding:20px !important;
+  
+}
+
+.userInfo span .ant-avatar-circle{
+  color:#ff5722;
 }
 
 .userInfo ul{

@@ -21,8 +21,6 @@ class UserList extends React.Component {
     }
 
     render() {
-
-
         return (
             <div>
                 <ul>
@@ -30,7 +28,7 @@ class UserList extends React.Component {
 
                         return (
 
-                            <li className="userList" key={user.id} >
+                            <li className="userList" key={user.id} style={{ background: user.toBeDeleted ? "#dff4ff" : "white" }} >
                                 <div className="userData" onClick={() => this.selectUser(user)}>
                                     <div className="iconBox">
                                         <input type="checkbox" onClick={(e) => this.onChange(e, user)} className="checkBox" />
@@ -48,7 +46,6 @@ class UserList extends React.Component {
     }
 }
 function mapStateToProps(state, ownProps) {
-    // console.log(state);
     const { usersList, selectedUser } = state.users;
     return {
         users: usersList,

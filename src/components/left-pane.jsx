@@ -6,11 +6,9 @@ import { connect } from "react-redux";
 
 class LeftPane extends React.Component {
     handleDelete = () => {
-        if (this.props.deleteUserList.length === 0) {
-            alert("please select user to delete");
-        } else {
-            this.props.deleteUsers();
-        }
+
+        this.props.deleteUsers();
+
     }
     render() {
         return (

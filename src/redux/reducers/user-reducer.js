@@ -1,15 +1,16 @@
 import produce from "immer";
 
-export default function userReducer(state = {
-
+const defaultState = {
     usersList: [
         { name: "Riyaz", localId: 101, description: "Frontend Developer", id: "1" },
         { name: "Abinash", localId: 102, description: "Backend Developer", id: "2" },
-        { name: "Khusi", localId: 105, description: "Database Developer", id: "3" }],
-    selectedUser: null,
-    deleteUserList: []
+        { name: "Khusi", localId: 105, description: "Database Developer", id: "3" }
+    ],
+    selectedUser: null
 
-}, action) {
+}
+
+export default function userReducer(state = defaultState, action) {
     switch (action.type) {
         case "CREATE_USER": {
             const nextState = produce(state, (draftState) => {
@@ -18,23 +19,14 @@ export default function userReducer(state = {
             return nextState;
         }
         case "DELETE_USERS": {
-            let matched = false;
-            const newUserList = [];
-            for (let i = 0; i < state.usersList.length; i++) {
-                matched = false;
-                for (let z = 0; z < state.deleteUserList.length; z++) {
-                    if (state.usersList[i].id === state.deleteUserList[z].id) {
-                        matched = true;
-                        break
-                    }
-                }
-                if (!matched)
-                    newUserList.push(Object.assign({}, state.usersList[i]));
-            }
-
             const nextState = produce(state, (draftState) => {
+                const newUserList = draftState.usersList.filter((user) => {
+                    if (user.toBeDeleted)
+                        return false;
+                    else
+                        return true;
+                });
                 draftState.usersList = newUserList;
-                draftState.selectedUser = null;
             });
 
             return nextState;
@@ -46,25 +38,25 @@ export default function userReducer(state = {
             });
             return nextState;
         }
-        case "ADD_TO_DELETE_LIST": {
+        case "SET_DELETE": {
             const nextState = produce(state, (draftState) => {
-                draftState.deleteUserList.push(action.user);
+                draftState.usersList.forEach((user) => {
+                    if (user.id === action.user.id)
+                        user.toBeDeleted = true;
+                });
             });
             return nextState;
         }
-        case "REMOVE_FROM_DELETE_LIST": {
-            const newDeleteUserList = state.deleteUserList.filter((user) => {
-                if (user.id === action.user.id) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
+        case "REMOVE__DELETE": {
             const nextState = produce(state, (draftState) => {
-                draftState.deleteUserList = newDeleteUserList;
+                draftState.usersList.forEach((user) => {
+                    if (user.id === action.user.id)
+                        user.toBeDeleted = false;
+                });
             });
-
             return nextState;
+
+
         }
         default:
             return state;

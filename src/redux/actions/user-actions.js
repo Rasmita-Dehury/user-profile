@@ -7,14 +7,14 @@ export function createUser(user) {
 
 export function addUserToDeleteList(user) {
     return {
-        type: "ADD_TO_DELETE_LIST",
+        type: "SET_DELETE",
         user
     }
 }
 
 export function removeUserFromDeleteList(user) {
     return {
-        type: "REMOVE_FROM_DELETE_LIST",
+        type: "REMOVE__DELETE",
         user
     }
 }
